@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for name:*)",
+      "Bash(do)",
+      "Bash(mkdir -p \"c:/Users/simon/Desktop/Portfolio/projets/$name\")",
+      "Bash(cp /tmp/project_template.html \"c:/Users/simon/Desktop/Portfolio/projets/$name/index.html\")",
+      "Bash(done)",
+      "Bash(for dir:*)",
+      "Bash(sed -i 's|<link rel=\"\"stylesheet\"\" href=\"\"../../css/style.css\"\">|<link rel=\"\"icon\"\" type=\"\"image/svg+xml\"\" href=\"\"../../assets/sicz-favicon-bleu-charte.svg\"\">\\\\n    <link rel=\"\"stylesheet\"\" href=\"\"../../css/style.css\"\">|' \"$dir/index.html\")",
+      "Bash(node -e ':*)",
+      "Bash(del \"c:\\\\Users\\\\simon\\\\Desktop\\\\Portfolio\\\\js\\\\fluid.js\")",
+      "Bash(python3 -c \" import sys, json lines = sys.stdin.read\\(\\).strip\\(\\).split\\('\\\\n'\\) for line in lines[-20:]: try: d = json.loads\\(line\\) role = d.get\\('role',''\\) content = d.get\\('content',''\\) if isinstance\\(content, list\\): for c in content: if isinstance\\(c, dict\\) and c.get\\('type'\\) == 'text': print\\(f'[{role}]: {c[\\\\\"text\\\\\"][:300]}'\\) elif isinstance\\(content, str\\): print\\(f'[{role}]: {content[:300]}'\\) except: pass \")",
+      "Bash(python3 -c ':*)",
+      "Bash(python3 -)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\simon\\\\Downloads\" -Filter \"*.md\")",
+      "Bash(Select-Object Name, FullName)",
+      "Bash(python3)"
+    ]
+  }
+}

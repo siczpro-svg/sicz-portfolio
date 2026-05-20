@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales — s!cz</title>
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="preload" href="https://use.typekit.net/kwr6tyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/kwr6tyz.css"></noscript>
+    <script src="/js/vendor/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="assets/sicz-favicon-bleu-charte.svg">
+    <style>*{box-sizing:border-box;margin:0;padding:0}::-webkit-scrollbar{display:none}*{scrollbar-width:none}body{background:#000;color:#f3f0ef;font-family:stolzl,sans-serif;overflow-x:hidden;cursor:none}#preloader{position:fixed;inset:0;background:#000;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transition:opacity .5s ease}#preloader.is-hiding{opacity:0;pointer-events:none}.preloader-logo{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}.preloader-logo.is-visible{opacity:1;transform:translateY(0)}.preloader-track{width:140px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}.preloader-bar{position:absolute;top:0;left:0;bottom:0;width:0%;background:#00b4ed;box-shadow:0 0 10px rgba(0,180,237,.7);transition:width .1s linear}.custom-cursor{position:fixed;top:0;left:0;width:20px;height:20px;background-color:#f3f0ef;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:difference;transform:translate(-50%,-50%)}</style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="is-project" style="background:radial-gradient(ellipse 65% 65% at 50% 50%,#00b4ed 0%,#000000 80%)">
+
+    <div id="preloader">
+        <img class="preloader-logo" src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="48">
+        <div class="preloader-track">
+            <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav class="project-nav">
+        <a class="nav-back" href="/">← Portfolio</a>
+        <span class="nav-project-name">Mentions légales</span>
+        <div class="nav-arrows"></div>
+    </nav>
+
+    <main>
+        <section class="legal-hero">
+            <div class="legal-hero-inner">
+                <h1>Mentions<br>légales</h1>
+            </div>
+        </section>
+
+        <div class="legal-content">
+
+            <section class="legal-section">
+                <h2>Éditeur du site</h2>
+                <p><strong>Simon Collin</strong>, designer graphique freelance opérant sous l'identité <strong>S!CZ Studio</strong>.<br>
+                Adresse postale : 45Q Boulevard Lobau, 54000 Nancy, France<br>
+                Contact : <a href="mailto:sicz.pro@gmail.com">sicz.pro@gmail.com</a></p>
+            </section>
+
+            <section class="legal-section">
+                <h2>Hébergeur</h2>
+                <p><strong>Vercel Inc.</strong>, 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br>
+                <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></p>
+            </section>
+
+            <section class="legal-section">
+                <h2>Propriété intellectuelle</h2>
+                <p>L'ensemble des contenus présents sur ce site — textes, visuels, logos, maquettes, identités graphiques, photographies et tout autre élément — est la propriété exclusive de Simon Collin, sauf mention contraire explicite. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable de Simon Collin.</p>
+                <p>Toute exploitation non autorisée du site ou de l'un de ses éléments sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
+            </section>
+
+            <section class="legal-section">
+                <h2>Crédits</h2>
+                <p>Certains visuels présentés sur ce site ont été réalisés dans un cadre professionnel ou scolaire. Les droits afférents à ces projets appartiennent à leurs commanditaires respectifs. Simon Collin dispose d'une autorisation de diffusion à titre de présentation de ses compétences.</p>
+                <p>Les visuels de mise en situation (mockups) utilisés pour illustrer les projets sont issus de ressources libres de droits ou ont été produits par Simon Collin.</p>
+            </section>
+
+            <section class="legal-section">
+                <h2>Limitation de responsabilité</h2>
+                <p>Simon Collin s'efforce de maintenir les informations publiées sur ce site aussi précises et à jour que possible. Toutefois, il ne saurait être tenu responsable des omissions, inexactitudes ou carences dans la mise à jour des informations.</p>
+                <p>Simon Collin ne peut être tenu responsable des dommages directs ou indirects causés au matériel de l'utilisateur lors de l'accès au site, résultant d'une défaillance technique ou de la présence de logiciels malveillants.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-top">
+            <span class="footer-avail">
+                <span class="dot"></span>Disponible pour de nouveaux projets
+            </span>
+            <a class="footer-logo" href="/">
+                <img src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="42" loading="lazy" decoding="async">
+            </a>
+            <nav class="footer-nav">
+                <a href="https://www.linkedin.com/in/simon-collin/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.behance.net/sicz_graphisme" target="_blank" rel="noopener">Behance</a>
+                <a href="mailto:sicz.pro@gmail.com">Contact</a>
+            </nav>
+        </div>
+        <div class="footer-cta">
+            <span class="footer-cta-line footer-cta-line--muted footer-cta-trigger" id="ctaTriggerTop">Travaillons</span>
+            <span class="footer-cta-line footer-cta-trigger" id="ctaTrigger">
+                <span class="footer-flip-word">
+                    <span class="footer-flip-inner">ensemble</span>
+                </span>
+                <span class="footer-arrow"> ↗</span>
+            </span>
+        </div>
+        <div class="footer-meta">
+            <span class="footer-copy">© 2026</span>
+            <span class="footer-legal">
+                <a href="/a-propos.html">À propos</a><span aria-hidden="true"> · </span><a href="/mentions-legales.html">Mentions légales</a><span aria-hidden="true"> · </span><a href="/politique-confidentialite.html">Politique de confidentialité</a>
+            </span>
+            <span class="footer-copy">Nancy, FR</span>
+        </div>
+        <div class="footer-bigname"><img src="assets/sicz-logo-typographique-blanc-charte.svg" alt="s!cz" loading="lazy" decoding="async"></div>
+    </footer>
+
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>

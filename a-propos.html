@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos — s!cz</title>
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="preload" href="https://use.typekit.net/kwr6tyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/kwr6tyz.css"></noscript>
+    <script src="/js/vendor/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="assets/sicz-favicon-bleu-charte.svg">
+    <style>*{box-sizing:border-box;margin:0;padding:0}::-webkit-scrollbar{display:none}*{scrollbar-width:none}body{background:#000;color:#f3f0ef;font-family:stolzl,sans-serif;overflow-x:hidden;cursor:none}#preloader{position:fixed;inset:0;background:#000;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transition:opacity .5s ease}#preloader.is-hiding{opacity:0;pointer-events:none}.preloader-logo{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}.preloader-logo.is-visible{opacity:1;transform:translateY(0)}.preloader-track{width:140px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}.preloader-bar{position:absolute;top:0;left:0;bottom:0;width:0%;background:#00b4ed;box-shadow:0 0 10px rgba(0,180,237,.7);transition:width .1s linear}.custom-cursor{position:fixed;top:0;left:0;width:20px;height:20px;background-color:#f3f0ef;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:difference;transform:translate(-50%,-50%)}</style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="is-project" style="background:radial-gradient(ellipse 65% 65% at 50% 50%,#00b4ed 0%,#000000 80%)">
+
+    <div id="preloader">
+        <img class="preloader-logo" src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="48">
+        <div class="preloader-track">
+            <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav class="project-nav">
+        <a class="nav-back" href="/">← Portfolio</a>
+        <span class="nav-project-name">À propos</span>
+        <div class="nav-arrows"></div>
+    </nav>
+
+    <main>
+
+        <section class="about-hero">
+            <div class="about-hero-placeholder"></div>
+            <div class="about-hero-overlay"></div>
+            <div class="about-hero-content">
+                <h1 class="about-hero-title">Simon Collin.<br>Designer graphique<br>basé à Nancy.</h1>
+                <p class="about-intro-sub">Je travaille sous l'identité S!CZ depuis le début de ma formation. Professionnel, créatif, polyvalent — je m'adapte à chaque projet, chaque univers, chaque client.</p>
+            </div>
+        </section>
+
+        <!-- Qui je suis -->
+        <section class="about-section">
+            <h2 class="about-label">Qui je suis</h2>
+            <div class="about-body">
+                <p>Je suis né à Épinal et j'ai grandi dans les Vosges. Avant d'arriver là où j'en suis, j'ai fait un détour par la fac de sciences, puis le STAPS, puis une usine. Rien de linéaire. Mais pendant tout ce temps, le design était là, en fond.</p>
+                <p>Gamin, j'avais une chaîne YouTube où je créais des logos, des overlays et des intros pour des petits créateurs gaming. J'ai arrêté à cause des moqueries. Des années plus tard, j'ai décidé de reprendre — cette fois pour de bon.</p>
+                <p>Aujourd'hui j'alterne entre mon alternance chez Arobase Systèmes, mes projets scolaires à MyDigitalSchool Nancy, et mes créations perso sous S!CZ.</p>
+            </div>
+        </section>
+
+        <!-- Ce que je fais -->
+        <section class="about-section">
+            <h2 class="about-label">Ce que je fais</h2>
+            <div class="about-body">
+                <p>Je crée des identités visuelles, des sites web, des campagnes. Mon terrain de jeu c'est Photoshop, WordPress, et de plus en plus le vibe coding. Ce qui me motive c'est de créer, et de créer encore — pas de maintenir.</p>
+            </div>
+        </section>
+
+        <!-- Timeline Premium — Scroll Hijack + Card Flip -->
+        <div class="tl-outer" id="tlOuter">
+            <div class="tl-sticky">
+
+                <div class="tl-header">
+                    <span class="tl-label-text">Parcours</span>
+                </div>
+
+<div class="tl-track-viewport">
+                    <div class="tl-track" id="tlTrack">
+
+                        <div class="tl-card" data-idx="0">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">COLLÈGE</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/collège</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">COLLÈGE</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> créer youtube_gaming/"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ logo............. OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ overlays......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ bannières........ OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> CHAÎNE LANCÉE"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Arrêt suite aux moqueries."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="1">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2021–2022</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2021-2022</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2021–2022</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> chercher --orientation"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ fac de sciences.. KO"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ STAPS............ KO"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ direction........ ?"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> AUCUN RÉSULTAT"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Ça ne colle pas. Je cherche."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="2">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2022</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2022</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2022</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> usine_trane --interim"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ contrat.......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ épargne.......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ certitude........ OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> DÉCISION PRISE"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Je sais ce que je veux faire."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="3">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2022–2023</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2022-2023</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2022–2023</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> formation --solo"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ tutos............ OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ projets perso.... OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ maîtrise outils.. OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> UN AN DE DESIGN"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Autodidacte. Sans école."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="4">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2023</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2023</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2023</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> mydigitalschool --nancy"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ dossier.......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ admission........ OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ bachelor CN...... OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> ENROLLED"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Nancy. Création Numérique."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="5">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2024</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2024</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2024</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> stage --arobase"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ identité......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ charte graphique. OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ site web......... OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> STAGE VALIDÉ"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Refonte complète livrée."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="6">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2025</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2025</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2025</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> alternance --arobase"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ La Comédie....... OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ MANK.LED......... OK"></div>
+                                            <div class="tl-tl tl-tl--ok" data-text="✔ autres clients... OK"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> EN PRODUCTION"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="Projets réels livrés."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tl-card" data-idx="7">
+                            <div class="tl-card-inner">
+                                <div class="tl-card-back">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2026</span>
+                                    </div>
+                                    <div class="tl-back-body">
+                                        <span class="tl-back-path">~/parcours/2026</span>
+                                        <span class="tl-back-prompt">$ <span class="tl-back-cursor">_</span></span>
+                                    </div>
+                                </div>
+                                <div class="tl-card-front">
+                                    <div class="tl-term-header">
+                                        <div class="tl-term-dots"><span class="tl-dot"></span><span class="tl-dot"></span><span class="tl-dot"></span></div>
+                                        <span class="tl-term-title">2026</span>
+                                    </div>
+                                    <div class="tl-term-body">
+                                        <div class="tl-term-lines">
+                                            <div class="tl-tl tl-tl--cmd" data-text="> lancer freelance/"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ certification.... OK"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ freelance........ LANCÉ"></div>
+                                            <div class="tl-tl tl-tl--ok"  data-text="✔ Luxembourg....... CAP"></div>
+                                            <div class="tl-tl tl-tl--sep" data-text="------------------------"></div>
+                                            <div class="tl-tl tl-tl--res" data-text="> NOUVEAU CHAPITRE"></div>
+                                            <div class="tl-tl tl-tl--dsc" data-text="La suite commence."></div>
+                                        </div>
+                                        <span class="tl-term-cursor">_</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Passions -->
+        <section class="about-section">
+            <h2 class="about-label">En dehors</h2>
+            <div class="about-body">
+                <p>En dehors du design, je fais du cliffjumping dans les cours d'eau vosgiens depuis 4 ans — et en 2024 j'ai fait un road trip d'une semaine dans le sud de la France pour enchaîner les spots. Je travaille constamment en musique, toutes variétés confondues. Et les jeux vidéo font partie de mon quotidien : c'est un univers qui m'a appris à lire une interface, à comprendre ce qui rend une expérience engageante, et à m'intéresser au design bien avant de savoir que ça s'appelait comme ça.</p>
+            </div>
+        </section>
+
+        <!-- Et demain -->
+        <section class="about-section">
+            <h2 class="about-label">Et demain ?</h2>
+            <div class="about-body">
+                <p>Après la soutenance, je me lance en freelance tout en visant des agences au Luxembourg — des agences qui créent, pas qui maintiennent. Et dans 5 ans, j'aimerais ouvrir une agence orientée IA. Je reste constamment informé sur les avancées du secteur, et je suis convaincu que les designers qui sauront intégrer l'IA dans leur pratique auront une longueur d'avance.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <div class="footer-top">
+            <span class="footer-avail">
+                <span class="dot"></span>Disponible pour de nouveaux projets
+            </span>
+            <a class="footer-logo" href="/">
+                <img src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="42" loading="lazy" decoding="async">
+            </a>
+            <nav class="footer-nav">
+                <a href="https://www.linkedin.com/in/simon-collin/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.behance.net/sicz_graphisme" target="_blank" rel="noopener">Behance</a>
+                <a href="#" id="contactNavBtn">Contact</a>
+            </nav>
+        </div>
+        <div class="footer-cta">
+            <span class="footer-cta-line footer-cta-line--muted footer-cta-trigger" id="ctaTriggerTop">Travaillons</span>
+            <span class="footer-cta-line footer-cta-trigger" id="ctaTrigger">
+                <span class="footer-flip-word">
+                    <span class="footer-flip-inner">ensemble</span>
+                </span>
+                <span class="footer-arrow"> ↗</span>
+            </span>
+        </div>
+        <div class="footer-meta">
+            <span class="footer-copy">© 2026</span>
+            <span class="footer-legal">
+                <a href="/a-propos.html">À propos</a><span aria-hidden="true"> · </span><a href="/mentions-legales.html">Mentions légales</a><span aria-hidden="true"> · </span><a href="/politique-confidentialite.html">Politique de confidentialité</a>
+            </span>
+            <span class="footer-copy">Nancy, FR</span>
+        </div>
+        <div class="footer-bigname"><img src="assets/sicz-logo-typographique-blanc-charte.svg" alt="s!cz" loading="lazy" decoding="async"></div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+    <button class="chat-btn" id="chatBtn" aria-label="Ouvrir le chat">
+        <img src="assets/sicz-favicon-bleu-charte.svg" alt="" width="42" height="42" loading="lazy" decoding="async">
+    </button>
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <img class="chat-header-name" src="assets/sicz-logo-blanc-charte.svg" alt="s!cz" loading="lazy" decoding="async">
+                <span class="chat-header-status"><span class="dot"></span>Disponible</span>
+            </div>
+            <button class="chat-close" id="chatClose">✕</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-bubble">Bonjour 👋</div>
+            <div class="chat-bubble">Vous avez un projet en tête ? Décrivez-le ici, on vous répond sous 24h.</div>
+        </div>
+        <form class="chat-form" id="chatForm">
+            <input class="chat-input" type="text" name="name" placeholder="Votre nom" required autocomplete="off">
+            <input class="chat-input" type="email" name="email" placeholder="Votre email" required autocomplete="off">
+            <textarea class="chat-input" name="message" placeholder="Votre message..." rows="5" required></textarea>
+            <button class="chat-send" type="submit" id="chatSend">Envoyer →</button>
+        </form>
+        <div class="chat-success" id="chatSuccess">Message reçu ✓<br>On vous répond sous 24h.</div>
+    </div>
+
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/apropos.js" defer></script>
+</body>
+</html>

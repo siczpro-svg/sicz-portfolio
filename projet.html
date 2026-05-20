@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet — s!cz</title>
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="preload" href="https://use.typekit.net/kwr6tyz.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.typekit.net/kwr6tyz.css"></noscript>
+    <script src="/js/vendor/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="assets/sicz-favicon-bleu-charte.svg">
+    <style>*{box-sizing:border-box;margin:0;padding:0}::-webkit-scrollbar{display:none}*{scrollbar-width:none}body{background:#000;color:#f3f0ef;font-family:stolzl,sans-serif;overflow-x:hidden;cursor:none}#preloader{position:fixed;inset:0;background:#000;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transition:opacity .5s ease}#preloader.is-hiding{opacity:0;pointer-events:none}.preloader-logo{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}.preloader-logo.is-visible{opacity:1;transform:translateY(0)}.preloader-track{width:140px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}.preloader-bar{position:absolute;top:0;left:0;bottom:0;width:0%;background:#00b4ed;box-shadow:0 0 10px rgba(0,180,237,.7);transition:width .1s linear}.custom-cursor{position:fixed;top:0;left:0;width:20px;height:20px;background-color:#f3f0ef;border-radius:50%;pointer-events:none;z-index:10000;mix-blend-mode:difference;transform:translate(-50%,-50%)}</style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <div id="preloader">
+        <img class="preloader-logo" src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="48">
+        <div class="preloader-track">
+            <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav class="project-nav">
+        <a class="nav-back" href="/">← Portfolio</a>
+        <span class="nav-project-name" id="navName"></span>
+        <div class="nav-arrows">
+            <a class="nav-arrow" id="navPrev">← Préc.</a>
+            <a class="nav-arrow" id="navNext">Suiv. →</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="project-hero">
+            <img id="heroImg" src="" alt="">
+            <div class="project-hero-overlay"></div>
+            <div class="project-hero-content">
+                <h1 class="project-title" id="projectTitle"></h1>
+                <p class="project-meta" id="projectMeta"></p>
+            </div>
+        </section>
+
+        <section class="project-info">
+            <div class="project-info-meta">
+                <div class="project-info-tag" id="projectType"></div>
+                <div class="project-info-tag" id="projectYear"></div>
+            </div>
+            <div class="project-info-body">
+                <p class="project-info-statement" id="projectStatement"></p>
+                <p class="project-description" id="projectDesc"></p>
+            </div>
+        </section>
+
+        <section class="project-gallery" id="projectGallery"></section>
+
+        <div class="project-bottom-nav">
+            <a class="bottom-nav-link prev" id="bottomPrev" href="#">
+                <span class="bottom-nav-label">← Précédent</span>
+                <span class="bottom-nav-title" id="bottomPrevTitle"></span>
+            </a>
+            <div class="bottom-nav-center">
+                <a class="bottom-nav-back" href="/">Portfolio</a>
+            </div>
+            <a class="bottom-nav-link next" id="bottomNext" href="#">
+                <span class="bottom-nav-label">Suivant →</span>
+                <span class="bottom-nav-title" id="bottomNextTitle"></span>
+            </a>
+        </div>
+    </main>
+
+    <div id="footerSpacer" style="height:100vh;background:#000;"></div>
+
+    <footer id="footer">
+        <div class="footer-top">
+            <span class="footer-avail">
+                <span class="dot"></span>Disponible pour de nouveaux projets
+            </span>
+            <a class="footer-logo" href="/">
+                <img src="assets/sicz-logo-bleu-blanc-charte.svg" alt="s!cz" height="42" loading="lazy" decoding="async">
+            </a>
+            <nav class="footer-nav">
+                <a href="https://www.linkedin.com/in/simon-collin/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.behance.net/sicz_graphisme" target="_blank" rel="noopener">Behance</a>
+                <a href="#" id="contactNavBtn">Contact</a>
+            </nav>
+        </div>
+        <div class="footer-cta">
+            <span class="footer-cta-line footer-cta-line--muted footer-cta-trigger" id="ctaTriggerTop">Travaillons</span>
+            <span class="footer-cta-line footer-cta-trigger" id="ctaTrigger">
+                <span class="footer-flip-word">
+                    <span class="footer-flip-inner">ensemble</span>
+                </span>
+                <span class="footer-arrow"> ↗</span>
+            </span>
+        </div>
+        <div class="footer-meta">
+            <span class="footer-copy">© 2026</span>
+            <span class="footer-legal">
+                <a href="/a-propos.html">À propos</a><span aria-hidden="true"> · </span><a href="/mentions-legales.html">Mentions légales</a><span aria-hidden="true"> · </span><a href="/politique-confidentialite.html">Politique de confidentialité</a>
+            </span>
+            <span class="footer-copy">Nancy, FR</span>
+        </div>
+        <div class="footer-bigname"><img src="assets/sicz-logo-typographique-blanc-charte.svg" alt="s!cz" loading="lazy" decoding="async"></div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+    <button class="chat-btn" id="chatBtn" aria-label="Ouvrir le chat">
+        <img src="assets/sicz-favicon-bleu-charte.svg" alt="" width="42" height="42" loading="lazy" decoding="async">
+    </button>
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <img class="chat-header-name" src="assets/sicz-logo-blanc-charte.svg" alt="s!cz" loading="lazy" decoding="async">
+                <span class="chat-header-status"><span class="dot"></span>Disponible</span>
+            </div>
+            <button class="chat-close" id="chatClose">✕</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-bubble">Bonjour 👋</div>
+            <div class="chat-bubble">Vous avez un projet en tête ? Décrivez-le ici, on vous répond sous 24h.</div>
+        </div>
+        <form class="chat-form" id="chatForm">
+            <input class="chat-input" type="text" name="name" placeholder="Votre nom" required autocomplete="off">
+            <input class="chat-input" type="email" name="email" placeholder="Votre email" required autocomplete="off">
+            <textarea class="chat-input" name="message" placeholder="Votre message..." rows="5" required></textarea>
+            <button class="chat-send" type="submit" id="chatSend">Envoyer →</button>
+        </form>
+        <div class="chat-success" id="chatSuccess">Message reçu ✓<br>On vous répond sous 24h.</div>
+    </div>
+
+    <script src="js/animations.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
