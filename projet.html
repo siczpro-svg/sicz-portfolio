@@ -39,11 +39,16 @@
     <main>
         <section class="project-hero">
             <img id="heroImg" src="" alt="">
+            <video id="heroVideo" autoplay loop muted playsinline style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"></video>
             <div class="project-hero-overlay"></div>
             <div class="project-hero-content">
                 <h1 class="project-title" id="projectTitle"></h1>
                 <p class="project-meta" id="projectMeta"></p>
             </div>
+            <button class="hero-sound-btn" id="heroSoundBtn" style="display:none;" aria-label="Activer le son">
+                <svg class="hero-sound-icon hero-sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                <svg class="hero-sound-icon hero-sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
         </section>
 
         <section class="project-info">
@@ -58,6 +63,16 @@
         </section>
 
         <section class="project-gallery" id="projectGallery"></section>
+
+        <div class="project-cta" id="projectCta" style="display:none;"></div>
+
+        <div class="project-wip" id="projectWip" style="display:none;">
+            <div class="project-wip-inner">
+                <span class="project-wip-dot"></span>
+                <p class="project-wip-label">Projet en cours</p>
+                <p class="project-wip-sub">Ce projet sera bientôt disponible.</p>
+            </div>
+        </div>
 
         <div class="project-bottom-nav">
             <a class="bottom-nav-link prev" id="bottomPrev" href="#">

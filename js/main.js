@@ -210,17 +210,14 @@ if (isPortfolio) {
     const logoFixed  = document.querySelector('.logo-fixed');
 
     const projects = [
-        { key: 'arobase',  name: 'Arobase Systèmes',       categories: ['branding', 'web'] },
-        { key: 'bouchtri', name: 'Bouchtri',                categories: ['autres'] },
-        { key: 'comedie',  name: 'La Comédie des Fleurs',   categories: ['web'] },
+        { key: 'arobase',  name: 'Arobase Systèmes',       categories: ['branding', 'web'], card: 'assets/projets/Arobase/projets portfolio_Carte carousel Arobase.jpg' },
+        { key: 'bouchtri', name: 'Bouchtri',                categories: ['autres'], card: 'assets/projets/Bouchtri/projets portfolio_Carte carousel bouchtri.jpg' },
+        { key: 'comedie',  name: 'La Comédie des Fleurs',   categories: ['web'], card: 'assets/projets/Comédie/projets portfolio_Carte carousel comedie.jpg' },
         { key: 'honey',    name: 'Honey Coffee & Food',     categories: ['web'] },
-        { key: 'slink',    name: 's!Link',                  categories: ['branding'] },
-        { key: 'mankled',  name: 'MANK.LED',                categories: ['web'] },
+        { key: 'slink',    name: 's!Link',                  categories: ['branding'], card: 'assets/projets/Silink/projets portfolio_Carte carousel silink.jpg' },
+        { key: 'mankled',  name: 'MANK.LED',                categories: ['web'], card: 'assets/projets/Mank/projets portfolio_Carte carousel mank-38.jpg' },
         { key: 'auren',    name: 'Auren',                   categories: ['autres'] },
-        { key: 'myr',      name: 'myr',                     categories: ['branding'] },
-        { key: 'rcl',      name: 'Rugby Club Lunévillois',  categories: ['branding'] },
-        { key: 'clotures', name: 'Clôtures Béton Vosges',   categories: ['web'] },
-        { key: 'umami',    name: 'Umami',                   categories: ['branding'] },
+        { key: 'myr',      name: 'myr',                     categories: ['branding'], card: 'assets/projets/MYR/projets portfolio_Carte carousel myr.jpg' },
         { key: 'affiches', name: 'Explorations<br>print',   categories: ['autres'] },
     ];
 
@@ -250,6 +247,7 @@ if (isPortfolio) {
     // ─── HERO INTRO ELEMENTS ────────────────────────────────────
     const introLogoImg    = document.querySelector('.intro-logo-img');
     const introSubtitle   = document.querySelector('.intro-subtitle');
+    const introBtnGroup   = document.querySelector('.intro-btn-group');
     const logoMarkPaths   = Array.from(document.querySelectorAll('.logo-mark path'));
     const logoLetterPaths = Array.from(document.querySelectorAll('.logo-letters path'));
     let heroEntranceDone  = false;
@@ -292,6 +290,7 @@ if (isPortfolio) {
 
     // État initial caché
     gsap.set(allStaggerEls, { opacity: 0, y: -20 });
+    if (introBtnGroup) gsap.set(introBtnGroup, { opacity: 0, y: 12 });
 
     runPreloader(() => {
         portfolioTransition.reveal(0.9);
@@ -313,6 +312,7 @@ if (isPortfolio) {
         if (savedScroll) {
             // Retour depuis un projet : affichage immédiat sans animation
             gsap.set(allStaggerEls, { opacity: 1, y: 0 });
+            if (introBtnGroup) gsap.set(introBtnGroup, { opacity: 1, y: 0 });
             heroEntranceDone = true;
         } else {
             // Première arrivée : stagger continu de gauche à droite
@@ -321,7 +321,8 @@ if (isPortfolio) {
                     onStart:    () => { allStaggerEls.forEach(el => { el.style.willChange = 'transform, opacity'; }); },
                     onComplete: () => { heroEntranceDone = true; allStaggerEls.forEach(el => { el.style.willChange = 'auto'; }); }
                 })
-                    .to(allStaggerEls, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.03 });
+                    .to(allStaggerEls, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', stagger: 0.03 })
+                    .to(introBtnGroup, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, '-=0.1');
             }, 500);
         }
     });
@@ -340,7 +341,7 @@ if (isPortfolio) {
         const canvas = card.querySelector('canvas');
         canvas.width  = 800;
         canvas.height = 500;
-        const liquid = initLiquidImage(canvas, `https://picsum.photos/seed/${p.key}/1200/800`);
+        const liquid = initLiquidImage(canvas, p.card || `https://picsum.photos/seed/${p.key}/1200/800`);
         const cardData = { el: card, index: i, hovered: false, liquid, canvas, _tiltXTarget: 0, _tiltYTarget: 0, _tiltX: 0, _tiltY: 0, _scale: 1, _filterOpacity: 1, _filterTargetVisible: true };
         if (liquid) {
             liquidRenderers.push(() => liquid.render());
@@ -441,6 +442,7 @@ if (isPortfolio) {
         const introVisible = tornadoProgress > 0 ? 0 : 1;
         if (tornadoProgress > 0 || heroEntranceDone) {
             gsap.set(introSubtitle, { opacity: introVisible, y: 0 });
+            if (introBtnGroup) gsap.set(introBtnGroup, { opacity: introVisible, y: 0 });
         }
         if (logoFixed) {
             if (tornadoProgress > 0) {
@@ -645,14 +647,36 @@ if (isProject) {
     // ─── DONNÉES ────────────────────────────────────────────────
     const PROJECTS = [
         {
-            key: 'arobase', title: 'Arobase Systèmes', type: 'Identité visuelle & web', year: '2025',
+            key: 'arobase', title: 'Arobase Systèmes', type: 'Identité visuelle & web', year: '2025', link: 'https://arobase-systemes.com/', linkLabel: 'Voir le site',
             context: "J'ai bossé chez Arobase pendant mon stage (avril–juin 2025), puis je suis revenu en alternance dès septembre. Arobase est une agence web à Nancy qui fait du site, des réseaux et du graphisme pour des clients locaux : TPE, artisans, PME du Grand-Est.",
             objectives: ['Nouveau logo', 'Charte graphique', 'Site web', 'Réseaux sociaux'],
             creative: "Pascal voulait garder le renard mais en traits géométriques, dans l'esprit de Richard Orlinski. Ça cadrait pas mal ce que je pouvais faire. J'ai travaillé sur des grilles de construction pour que la tête soit parfaitement symétrique, testé plusieurs directions avant d'arriver à quelque chose de propre et déclinable. Pour le site, j'ai choisi une palette sombre qui tranche avec les agences web classiques, trop sages. Les réseaux ont suivi la même logique graphique que le logo.",
             palette: "Orange Mandarine #F68615 · Noir Pur #000000 · Blanc Pur #FFFFFF · Almost Black #222222",
             results: "Pascal a gagné des clients grâce au nouveau site, ce que l'ancien ne permettait pas.",
-            hero: 'https://picsum.photos/seed/arobase-hero/1920/1080',
-            images: ['https://picsum.photos/seed/arobase1/1600/900','https://picsum.photos/seed/arobase2/900/1100','https://picsum.photos/seed/arobase3/900/1100','https://picsum.photos/seed/arobase4/1600/900','https://picsum.photos/seed/arobase5/900/1100','https://picsum.photos/seed/arobase6/900/1100']
+            hero: 'assets/projets/Arobase/images hero/projets portfolio-11.jpg',
+            heroSlideshow: [
+                'assets/projets/Arobase/images hero/projets portfolio-11.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-12.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-13.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-14.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-15.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-16.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-17.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-18.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-19.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-20.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio-21.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie.jpg',
+                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie 2.jpg'
+            ],
+            images: [
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 1.jpg', portrait: false },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 2.jpg', portrait: true  },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 3.jpg', portrait: true  },
+                { src: 'assets/projets/Arobase/9.16.mp4', video: true, portrait: false, audio: 'assets/projets/Arobase/son-video-arobase.mp3' },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 5.jpg', portrait: true  },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 6.jpg', portrait: true  }
+            ]
         },
         {
             key: 'bouchtri', title: 'Bouchtri', type: 'Identité visuelle & communication', year: '2025',
@@ -661,19 +685,38 @@ if (isProject) {
             creative: "Le nom dit tout : « bouche » + « tri ». Le O remplacé par le symbole de recyclage, c'était une évidence. Pour les couleurs, j'avais pas envie de faire le vert écolo habituel, trop vu. Vert forêt profond pour le corps de la station, vert électrique pour les LED et l'écran. Le logo a deux versions pensées pour le produit lui-même : une horizontale pour la base, une empilée pour l'écran. La campagne a tourné autour d'un seul fil rouge : « Un geste. Une ville qui avance. »",
             palette: "Vert Forêt #13302a · Vert Électrique #23ff65",
             contribution: "Logo, charte, visuels du produit via IA, 5 visuels de campagne (4×3, abribus, réseaux, presse), 5 mockups, motion design 37 secondes sur After Effects avec voix off, landing page en vibe coding.",
-            hero: 'https://picsum.photos/seed/bouchtri-hero/1920/1080',
-            images: ['https://picsum.photos/seed/bouchtri1/1600/900','https://picsum.photos/seed/bouchtri2/900/1100','https://picsum.photos/seed/bouchtri3/900/1100','https://picsum.photos/seed/bouchtri4/1600/900','https://picsum.photos/seed/bouchtri5/900/1100','https://picsum.photos/seed/bouchtri6/900/1100']
+            hero: 'assets/projets/Bouchtri/projets portfolio_Image hero bouchtri.jpg',
+            heroVideo: 'assets/projets/Bouchtri/motion bouchtri render.mp4',
+            images: [
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 1.jpg', portrait: false },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 2.jpg', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 3.jpg', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 4.jpg', portrait: false },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 5.jpg', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 6.jpg', portrait: true  }
+            ]
         },
         {
             key: 'comedie', title: 'La Comédie des Fleurs', type: 'E-commerce & design web', year: '2025',
+            links: [
+                { href: 'https://prod-novakom.fr/arobase/comediefleurs', label: 'Voir le site principal' },
+                { href: 'https://prod-novakom.fr/arobase/floristamericancemetery/', label: 'Voir le site enfant' }
+            ],
             context: "Client d'Arobase Systèmes. La Comédie des Fleurs est une boutique de fleurs à Épinal. L'ancien site était en full code, impossible à gérer pour elle au quotidien. En bonus : elle est partenaire d'un cimetière militaire américain à Épinal, ce qui a nécessité un deuxième site (Florist American Cemetery) entièrement en français et en anglais.",
             objectives: ['Migrer sur WordPress/WooCommerce', 'Intégrer 280 produits', 'Créer une ambiance florale immersive', 'Site enfant bilingue FR/EN'],
             creative: "Pour la Comédie des Fleurs, je voulais que le visiteur ait l'impression d'entrer dans la boutique depuis son écran. Beaucoup de photos, mise en page généreuse, palette végétale calée sur le logo existant. Pour Florist American Cemetery, c'est un autre registre : bleu et rouge du drapeau américain, sobre, pour une clientèle qui vient honorer des soldats enterrés en France. J'ai construit des fichiers CSV à la main pour importer les 280 produits, et mis en place Polylang pour la double langue avec traduction complète des slugs.",
-            hero: 'https://picsum.photos/seed/comedie-hero/1920/1080',
-            images: ['https://picsum.photos/seed/comedie1/1600/900','https://picsum.photos/seed/comedie2/900/1100','https://picsum.photos/seed/comedie3/900/1100','https://picsum.photos/seed/comedie4/1600/900','https://picsum.photos/seed/comedie5/900/1100','https://picsum.photos/seed/comedie6/900/1100']
+            hero: 'assets/projets/Comédie/projets portfolio_Image hero comedie.jpg',
+            images: [
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 1.jpg', portrait: false },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 2.jpg', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 3.jpg', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 4.jpg', portrait: false },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 5.jpg', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 6.jpg', portrait: true  }
+            ]
         },
         {
-            key: 'honey', title: 'Honey Coffee & Food', type: 'Design web', year: '2025',
+            key: 'honey', title: 'Honey Coffee & Food', type: 'Design web', year: '2025', wip: true,
             context: "My Digital Project en Bachelor 3ème année, équipe pluridisciplinaire. Honey est un restaurant brunch ouvert depuis 2022 à Nancy, avec une adresse à Metz et plus de 14 000 abonnés Instagram. L'ancien site ne faisait pas le job.",
             objectives: ["Site avec animations et effets au scroll", "Charte graphique à partir de l'identité existante", "Contenus réseaux et vidéos"],
             creative: "Zéro refonte logo, c'était la contrainte. J'ai construit la charte autour de ce qui existait déjà : noir, or, blanc. L'ambiance recherchée c'est chaud et un peu premium à la fois. Site réalisé en vibe coding avec effets au scroll, animations et un préloader pour poser l'ambiance dès l'entrée.",
@@ -686,15 +729,27 @@ if (isProject) {
             context: "1ère année Bachelor. Plateforme fictive de mise en relation freelances/clients, dans l'esprit de Malt, mais avec une identité qui ressemble pas aux autres.",
             creative: "4 triangles qui se rejoignent pour former un S. L'idée c'était de représenter des gens qui se connectent et créent ensemble. Violet et bleu nuit plutôt que les tons neutres habituels des plateformes freelance. La baseline « Connecter. Créer. Collaborer. » résume le concept en trois mots.",
             palette: "Violet Électrique #6528F7 · Lavande #D7BBF5 · Bleu Nuit #0D0975 · Altone Medium",
-            hero: 'https://picsum.photos/seed/slink-hero/1920/1080',
-            images: ['https://picsum.photos/seed/slink1/1600/900','https://picsum.photos/seed/slink2/900/1100','https://picsum.photos/seed/slink3/900/1100','https://picsum.photos/seed/slink4/1600/900','https://picsum.photos/seed/slink5/900/1100','https://picsum.photos/seed/slink6/900/1100']
+            hero: 'assets/projets/Silink/projets portfolio_Image hero silink.jpg',
+            images: [
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 1.jpg', portrait: false },
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 2.jpg', portrait: false },
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 3.jpg', portrait: false }
+            ],
+            pdf: 'assets/projets/Silink/silink charte graphique pdf.pdf'
         },
         {
-            key: 'mankled', title: 'MANK.LED', type: 'Design web', year: '2025',
+            key: 'mankled', title: 'MANK.LED', type: 'Design web', year: '2025', link: 'https://prod-novakom.fr/arobase/mank', linkLabel: 'Voir le site',
             context: "Client d'Arobase, cinquantaine d'heures. MANK.LED vend et pose de l'éclairage et du matériel électrique pour le spectacle, les forains et les collectivités.",
             creative: "Fond noir partout. Quand tu vends des produits qui s'allument, tu les mets sur fond noir. C'est ce que font les scènes de spectacle depuis toujours. Structure divisée par secteur d'activité pour que chaque visiteur trouve son truc rapidement.",
-            hero: 'https://picsum.photos/seed/mankled-hero/1920/1080',
-            images: ['https://picsum.photos/seed/mankled1/1600/900','https://picsum.photos/seed/mankled2/900/1100','https://picsum.photos/seed/mankled3/900/1100','https://picsum.photos/seed/mankled4/1600/900','https://picsum.photos/seed/mankled5/900/1100','https://picsum.photos/seed/mankled6/900/1100']
+            hero: 'assets/projets/Mank/projets portfolio_Image hero mank.jpg',
+            images: [
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 1.jpg', portrait: false },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 2.jpg', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 3.jpg', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 5.jpg', portrait: false },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 6.jpg', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 7.jpg', portrait: true }
+            ]
         },
         {
             key: 'auren', title: 'AUREN', type: 'UX/UI Design', year: '2025',
@@ -708,30 +763,13 @@ if (isProject) {
             key: 'myr', title: 'myr', type: 'Identité visuelle', year: '2024',
             context: "2ème année Bachelor, vingtaine d'heures. Marque fictive de cosmétiques au miel de sapin des Vosges.",
             creative: "Je suis vosgien, donc l'univers je le connais bien. La branche de sapin qui forme le Y de mYr, c'est venu assez naturellement. Vert forêt, miel doré, crème : les couleurs du territoire. Déclinaisons produits faites sur Photoshop avec des mockups.",
-            hero: 'https://picsum.photos/seed/myr-hero/1920/1080',
-            images: ['https://picsum.photos/seed/myr1/1600/900','https://picsum.photos/seed/myr2/900/1100','https://picsum.photos/seed/myr3/900/1100','https://picsum.photos/seed/myr4/1600/900','https://picsum.photos/seed/myr5/900/1100','https://picsum.photos/seed/myr6/900/1100']
-        },
-        {
-            key: 'rcl', title: 'Rugby Club Lunévillois', type: 'Identité visuelle', year: '2024',
-            context: "2ème année Bachelor, cinquantaine d'heures. Vrai client, plusieurs rendez-vous sur place. Club fondé en 1928 à Lunéville.",
-            creative: "On a tous proposé un logo, le mien a été retenu. J'ai intégré les lunes de Lunéville dans le blason, c'est un symbole fort de la ville, ça avait du sens pour un club local. Bleu et jaune, les couleurs historiques. Ensuite : 3 versions de maillots, templates réseaux pour les scores et jours de match, flyer pour un afterwork.",
-            hero: 'https://picsum.photos/seed/rcl-hero/1920/1080',
-            images: ['https://picsum.photos/seed/rcl1/1600/900','https://picsum.photos/seed/rcl2/900/1100','https://picsum.photos/seed/rcl3/900/1100','https://picsum.photos/seed/rcl4/1600/900','https://picsum.photos/seed/rcl5/900/1100','https://picsum.photos/seed/rcl6/900/1100']
-        },
-        {
-            key: 'clotures', title: 'Clôtures Béton Vosges', type: 'Design web', year: '2025',
-            context: "Client d'Arobase, soixantaine d'heures. Vente et pose de clôtures béton et aménagements paysagers partout en France.",
-            creative: "J'ai repris la charte du client sans la toucher. Site sobre et carré, adapté à un secteur où les clients veulent voir les réalisations et avoir un devis vite. J'ai aussi branché un plugin de synchro Facebook pour que ses publications alimentent automatiquement la section actualités, il n'avait pas envie de gérer deux endroits.",
-            hero: 'https://picsum.photos/seed/clotures-hero/1920/1080',
-            images: ['https://picsum.photos/seed/clotures1/1600/900','https://picsum.photos/seed/clotures2/900/1100','https://picsum.photos/seed/clotures3/900/1100','https://picsum.photos/seed/clotures4/1600/900','https://picsum.photos/seed/clotures5/900/1100','https://picsum.photos/seed/clotures6/900/1100']
-        },
-        {
-            key: 'umami', title: 'Umami', type: 'Identité visuelle', year: '2024',
-            context: "Projet scolaire géré comme une vraie mission agence, avec jalons de validation. Restaurant japonais fictif à Nancy.",
-            creative: "Le brief disait clairement : pas de clichés. Pas de soleil rouge, pas de kanji décoratif. J'ai construit le logo avec des traits de pinceau qui forment la fleur de sakura, une référence au japonisme sans en faire trop. Pour la palette, j'ai évité le rouge et noir attendus : vert forêt, crème, miel. Ça donne quelque chose de plus calme, plus contemporain. Flyers recto/verso avec un système saisonnier réplicable.",
-            palette: "Vert Forêt #3C4D31 · Crème #EDEBCE · Vert Clair #C4FAA0 · Brun Chaud #452A1C · Mak",
-            hero: 'https://picsum.photos/seed/umami-hero/1920/1080',
-            images: ['https://picsum.photos/seed/umami1/1600/900','https://picsum.photos/seed/umami2/900/1100','https://picsum.photos/seed/umami3/900/1100','https://picsum.photos/seed/umami4/1600/900','https://picsum.photos/seed/umami5/900/1100','https://picsum.photos/seed/umami6/900/1100']
+            hero: 'assets/projets/MYR/projets portfolio_Image hero myr.jpg',
+            images: [
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 1.jpg', portrait: false },
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 2.jpg', portrait: false },
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 3.jpg', portrait: false }
+            ],
+            pdf: 'assets/projets/MYR/Charte-graphique-myr.pdf'
         },
         {
             key: 'affiches', title: 'Explorations print', type: 'Print & illustration', year: '2024 – 2025',
@@ -762,9 +800,6 @@ if (isProject) {
         mankled:  `MAN<span class="ag">K.</span>LED`,
         auren:    `A<span class="ag">ur</span>en`,
         myr:      `m<span class="ag">yr</span>`,
-        rcl:      `Rug<span class="ag">by</span> Club Lunévillois`,
-        clotures: `Cl<span class="ag">ôt</span>ures Béton Vosges`,
-        umami:    `Um<span class="ag">am</span>i`,
         affiches: `Explor<span class="ag">at</span>ions print`,
     };
 
@@ -777,16 +812,54 @@ if (isProject) {
         mankled:  `Quand tu vends des <span class="ag">produits</span> qui s'allument, tu les mets sur <span class="ag">fond</span> noir.`,
         auren:    `Des voitures qui font <span class="ag">rêver.</span> Une <span class="ag">palette</span> qui reflète ça.`,
         myr:      `<span class="ag">Cosmétiques</span> au miel de <span class="ag">sapin</span> des Vosges. L'univers, je le connais <span class="ag">bien.</span>`,
-        rcl:      `Un <span class="ag">logo</span> pour un club fondé en 1928 à Lunéville. Le mien a été <span class="ag">retenu.</span>`,
-        clotures: `Un secteur où les clients veulent voir les <span class="ag">réalisations</span> et avoir un <span class="ag">devis</span> vite.`,
-        umami:    `Pas de <span class="ag">clichés.</span> Pas de soleil rouge, pas de <span class="ag">kanji</span> décoratif.`,
         affiches: `<span class="ag">Explorations</span> print. De l'affiche <span class="ag">sportive</span> au flyer <span class="ag">étudiant.</span>`,
     };
 
     document.title = `${project.title} — s!cz`;
     document.getElementById('navName').textContent        = project.title;
-    document.getElementById('heroImg').src                = project.hero;
-    document.getElementById('heroImg').alt                = project.title;
+    const heroVideoEl = document.getElementById('heroVideo');
+    const heroImgEl   = document.getElementById('heroImg');
+    const soundBtn    = document.getElementById('heroSoundBtn');
+
+    if (project.heroVideo) {
+        heroImgEl.style.display  = 'none';
+        heroVideoEl.style.display = 'block';
+        heroVideoEl.src           = project.heroVideo;
+        if (project.hero) heroVideoEl.poster = project.hero;
+        soundBtn.style.display = 'flex';
+        let muted = true;
+        soundBtn.addEventListener('click', () => {
+            muted = !muted;
+            heroVideoEl.muted = muted;
+            soundBtn.querySelector('.hero-sound-icon--off').style.display = muted  ? '' : 'none';
+            soundBtn.querySelector('.hero-sound-icon--on').style.display  = !muted ? '' : 'none';
+        });
+    } else {
+        heroImgEl.src = project.hero;
+        heroImgEl.alt = project.title;
+    }
+
+    if (project.heroSlideshow && project.heroSlideshow.length > 1) {
+        const heroSection = document.querySelector('.project-hero');
+        const baseImg     = document.getElementById('heroImg');
+        baseImg.style.display = 'none';
+
+        const slides = project.heroSlideshow.map((src, i) => {
+            const img = document.createElement('img');
+            img.className = 'hero-slide' + (i === 0 ? ' is-active' : '');
+            img.src = src;
+            img.alt = project.title;
+            heroSection.insertBefore(img, heroSection.firstChild);
+            return img;
+        });
+
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('is-active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('is-active');
+        }, 200);
+    }
     document.getElementById('projectMeta').textContent    = `${project.type} — ${project.year}`;
     document.getElementById('projectTitle').innerHTML     = AG_TITLES[project.key] || project.title;
     document.getElementById('projectStatement').innerHTML = AG_STATEMENTS[project.key] || '';
@@ -843,12 +916,75 @@ if (isProject) {
     if (nextProject) { bottomNext.href = `/projet.html?id=${nextProject.key}`; document.getElementById('bottomNextTitle').innerHTML = AG_TITLES[nextProject.key] || nextProject.title; }
     else { bottomNext.style.visibility = 'hidden'; }
 
+    // ─── VISIONNEUSE PDF ────────────────────────────────────────────
+    if (project.pdf) {
+        const pdfSection = document.createElement('div');
+        pdfSection.className = 'pdf-viewer';
+        pdfSection.innerHTML = `
+            <div class="pdf-frame" id="pdfFrame">
+                <iframe src="${project.pdf}" class="pdf-iframe" title="Charte graphique"></iframe>
+                <div class="pdf-overlay" id="pdfOverlay">
+                    <span class="pdf-overlay-label">Charte graphique</span>
+                    <button class="pdf-open-btn" id="pdfOpenBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Voir la charte graphique
+                    </button>
+                </div>
+            </div>
+            <div class="pdf-close-bar">
+                <button class="pdf-close-btn" id="pdfCloseBtn">↑ Réduire</button>
+            </div>`;
+        const gallery = document.getElementById('projectGallery');
+        gallery.parentNode.insertBefore(pdfSection, gallery.nextSibling);
+
+        const frame   = pdfSection.querySelector('#pdfFrame');
+        const overlay = pdfSection.querySelector('#pdfOverlay');
+        const openBtn = pdfSection.querySelector('#pdfOpenBtn');
+        const closeBtn = pdfSection.querySelector('#pdfCloseBtn');
+
+        const openViewer = () => {
+            frame.classList.add('is-open');
+            overlay.classList.add('is-hidden');
+        };
+        const closeViewer = () => {
+            frame.classList.remove('is-open');
+            overlay.classList.remove('is-hidden');
+        };
+
+        openBtn.addEventListener('click', openViewer);
+        overlay.addEventListener('click', openViewer);
+        closeBtn.addEventListener('click', closeViewer);
+    }
+
+    // ─── CTA ────────────────────────────────────────────────────────
+    const ctaWrap = document.getElementById('projectCta');
+    const links = project.links || (project.link ? [{ href: project.link, label: project.linkLabel || 'Voir le projet' }] : []);
+    if (links.length) {
+        links.forEach((l, i) => {
+            const a = document.createElement('a');
+            a.href = l.href; a.target = '_blank'; a.rel = 'noopener';
+            a.textContent = l.label;
+            a.className = 'project-cta-btn' + (i > 0 ? ' project-cta-btn--secondary' : '');
+            ctaWrap.appendChild(a);
+        });
+        ctaWrap.style.display = 'flex';
+    }
+
+    const wipEl = document.getElementById('projectWip');
+    if (project.wip) {
+        wipEl.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
+    }
+
     // ─── GALERIE ────────────────────────────────────────────────
     const gallery = document.getElementById('projectGallery');
 
-    // Détecte portrait vs paysage depuis l'URL (ex: /900/1100)
-    function imgIsPortrait(url) {
-        const m = url.match(/\/(\d+)\/(\d+)(?:[/?#]|$)/);
+    // Détecte portrait vs paysage : objet {src,portrait} ou URL picsum (/900/1100)
+    function imgSrc(item)      { return typeof item === 'object' ? item.src : item; }
+    function imgIsPortrait(item) {
+        if (typeof item === 'object') return item.portrait === true;
+        const m = item.match(/\/(\d+)\/(\d+)(?:[/?#]|$)/);
         return m ? parseInt(m[1]) < parseInt(m[2]) : false;
     }
 
@@ -871,15 +1007,40 @@ if (isProject) {
     groups.forEach((group, idx) => {
         if (idx > 0) gHtml += `<div class="gallery-spacer"></div>`;
         if (group.layout === 'full') {
-            gHtml += `<div class="gallery-full"><canvas data-src="${group.imgs[0]}" data-w="1200" data-h="675"></canvas></div>`;
+            const item = group.imgs[0];
+            if (typeof item === 'object' && item.video) {
+                const audioAttr = item.audio ? `data-audio="${item.audio}"` : '';
+                gHtml += `<div class="gallery-full-video"><video src="${item.src}" autoplay loop muted playsinline></video>${item.audio ? `<audio src="${item.audio}" loop></audio><button class="gallery-sound-btn" aria-label="Activer le son"><svg class="hero-sound-icon hero-sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg><svg class="hero-sound-icon hero-sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>` : ''}</div>`;
+            } else {
+                gHtml += `<div class="gallery-full"><canvas data-src="${imgSrc(item)}" data-w="1600" data-h="900"></canvas></div>`;
+            }
         } else {
             gHtml += `<div class="gallery-pair">` +
-                `<canvas data-src="${group.imgs[0]}" data-w="700" data-h="858"></canvas>` +
-                `<canvas data-src="${group.imgs[1]}" data-w="700" data-h="858"></canvas>` +
+                `<canvas data-src="${imgSrc(group.imgs[0])}" data-w="900" data-h="1100"></canvas>` +
+                `<canvas data-src="${imgSrc(group.imgs[1])}" data-w="900" data-h="1100"></canvas>` +
             `</div>`;
         }
     });
     gallery.innerHTML = gHtml;
+
+    // Son sur les vidéos de galerie (audio externe synchronisé)
+    gallery.querySelectorAll('.gallery-sound-btn').forEach(btn => {
+        const audio = btn.previousElementSibling;
+        const video = audio.previousElementSibling;
+        audio.volume = 1;
+        let playing = false;
+        btn.addEventListener('click', () => {
+            playing = !playing;
+            if (playing) {
+                audio.currentTime = video.currentTime % (audio.duration || video.currentTime);
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            btn.querySelector('.hero-sound-icon--off').style.display = playing ? 'none' : '';
+            btn.querySelector('.hero-sound-icon--on').style.display  = playing ? ''     : 'none';
+        });
+    });
 
     // Liquid distort sur chaque canvas
     const galleryLiquids = [];
