@@ -60,26 +60,98 @@
         if (cursor) cursor.style.display = 'none';
     }
 
+    // ─── Flip basé sur la position dans le viewport (mobile + desktop) ─────────
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function updateFlip() {
+        var vpRect   = viewport.getBoundingClientRect();
+        var vw       = vpRect.width;
+        var isMobile = window.innerWidth < 768;
+
+        for (var i = 0; i < CARD_COUNT; i++) {
+            var cardLeft = cards[i].getBoundingClientRect().left - vpRect.left;
+            // Sur mobile : flip démarre quand la carte est déjà à 65 % dans le viewport
+            // Sur desktop : flip démarre dès l'entrée dans le viewport
+            var fp = isMobile
+                ? Math.max(0, Math.min(1, (vw * 0.65 - cardLeft) / (vw * 0.45)))
+                : Math.max(0, Math.min(1, (vw - cardLeft) / (vw * 0.55)));
+            var eased = easeInOutCubic(fp);
+            var peakX = Math.sin(fp * Math.PI) * 14;
+
+            if (inners[i]) {
+                inners[i].style.transform =
+                    'rotateY(' + (180 - eased * 180).toFixed(2) + 'deg) ' +
+                    'rotateX(' + peakX.toFixed(2) + 'deg)';
+            }
+            if (fp >= 0.55) {
+                triggerTypewriter(i);
+            } else if (fp < 0.4) {
+                resetTypewriter(i);
+            }
+        }
+    }
+
     // ─── MOBILE ──────────────────────────────────────────────────────────────
     if (window.innerWidth < 768) {
+        // État initial : verso visible (même que desktop)
         inners.forEach(function (inner) {
-            if (inner) inner.style.transform = 'rotateY(0deg)';
+            if (inner) inner.style.transform = 'rotateY(180deg)';
         });
+        cards.forEach(function (card) { card.style.opacity = '1'; });
 
-        var mobileObs = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (!entry.isIntersecting) return;
-                var card = entry.target;
-                mobileObs.unobserve(card);
-                var idx = parseInt(card.dataset.idx || '0', 10);
-                setTimeout(function () {
-                    card.classList.add('tl-revealed');
-                    triggerTypewriter(idx);
-                }, idx * 150);
-            });
-        }, { threshold: 0.15 });
+        // Flip mis à jour au scroll horizontal natif
+        viewport.addEventListener('scroll', updateFlip, { passive: true });
+        setTimeout(updateFlip, 100);
 
-        cards.forEach(function (card) { mobileObs.observe(card); });
+        // ── Touch hijack : swipe vertical → scroll horizontal ───────────────
+        var mobileActive = false;
+        var touchStartY  = 0;
+        var touchTargetX = 0;
+
+        function checkMobileCentered() {
+            var rect          = tlOuter.getBoundingClientRect();
+            var sectionCenter = rect.top + rect.height / 2;
+            var vpCenter      = window.innerHeight / 2;
+            var wasActive     = mobileActive;
+            mobileActive = Math.abs(sectionCenter - vpCenter) < window.innerHeight * 0.2;
+            if (mobileActive && !wasActive) {
+                touchTargetX = viewport.scrollLeft;
+                updateFlip();
+            }
+        }
+
+        if (window.lenis) {
+            window.lenis.on('scroll', checkMobileCentered);
+        } else {
+            window.addEventListener('scroll', checkMobileCentered, { passive: true });
+        }
+        checkMobileCentered();
+
+        document.addEventListener('touchstart', function (e) {
+            touchStartY  = e.touches[0].clientY;
+            touchTargetX = viewport.scrollLeft;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function (e) {
+            if (!mobileActive) return;
+
+            var maxScroll = viewport.scrollWidth - viewport.clientWidth;
+            if (maxScroll <= 0) return;
+
+            var dy      = touchStartY - e.touches[0].clientY;
+            var atStart = touchTargetX <= 0             && dy < 0;
+            var atEnd   = touchTargetX >= maxScroll - 1 && dy > 0;
+            if (atStart || atEnd) return;
+
+            e.preventDefault();
+            touchTargetX = Math.max(0, Math.min(maxScroll, touchTargetX + dy * 1.2));
+            viewport.scrollLeft = touchTargetX;
+            touchStartY = e.touches[0].clientY;
+            updateFlip();
+        }, { passive: false, capture: true });
+
         return;
     }
 
@@ -101,10 +173,11 @@
     });
 
     function animateFloat() {
-        var t = performance.now() / 1000;
+        var t         = performance.now() / 1000;
+        var amplitude = window.innerWidth < 768 ? 6 : 28;
         for (var i = 0; i < CARD_COUNT; i++) {
             var s      = states[i];
-            var floatY = Math.sin(t * 0.6 + s.phase) * 28;
+            var floatY = Math.sin(t * 0.6 + s.phase) * amplitude;
             s.tiltX   += (s.targetTiltX - s.tiltX) * 0.08;
             s.tiltY   += (s.targetTiltY - s.tiltY) * 0.08;
             cards[i].style.opacity = '1';
@@ -131,38 +204,6 @@
             states[i].targetTiltY = 0;
         });
     });
-
-    // ─── Flip basé sur la position dans le viewport ──────────────────────────
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function updateFlip() {
-        var vpRect    = viewport.getBoundingClientRect();
-        var vw        = vpRect.width;
-        var flipZone  = vw * 0.55; // distance de scroll pour passer de verso à recto
-
-        for (var i = 0; i < CARD_COUNT; i++) {
-            var cardLeft = cards[i].getBoundingClientRect().left - vpRect.left;
-
-            // fp = 0 quand le bord gauche de la carte est au bord droit du viewport
-            // fp = 1 quand la carte a avancé de flipZone vers la gauche
-            var fp    = Math.max(0, Math.min(1, (vw - cardLeft) / flipZone));
-            var eased = easeInOutCubic(fp);
-            var peakX = Math.sin(fp * Math.PI) * 14;
-
-            if (inners[i]) {
-                inners[i].style.transform =
-                    'rotateY(' + (180 - eased * 180).toFixed(2) + 'deg) ' +
-                    'rotateX(' + peakX.toFixed(2) + 'deg)';
-            }
-            if (fp >= 0.55) {
-                triggerTypewriter(i);
-            } else if (fp < 0.4) {
-                resetTypewriter(i);
-            }
-        }
-    }
 
     viewport.addEventListener('scroll', function () {
         if (!rafId) updateFlip();

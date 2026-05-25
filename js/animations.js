@@ -411,9 +411,30 @@ function initGalleryReveal() {
     const groups = Array.from(document.querySelectorAll('.project-gallery > div:not(.gallery-spacer)'));
     if (!groups.length) return;
 
-    // Récupère les éléments animables dans chaque groupe (canvas ou img)
     const transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)';
 
+    // Mobile : chaque image animée individuellement au scroll
+    if (window.innerWidth < 768) {
+        const items = Array.from(document.querySelectorAll('.project-gallery canvas, .project-gallery img'));
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                obs.unobserve(entry.target);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+
+        items.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(80px)';
+            item.style.transition = transition;
+            obs.observe(item);
+        });
+        return;
+    }
+
+    // Desktop : animation par groupe
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;

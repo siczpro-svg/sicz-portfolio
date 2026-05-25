@@ -233,8 +233,8 @@ if (isPortfolio) {
         const width = window.innerWidth;
         if (width > 1200) return width * 0.32;
         if (width > 768)  return width * 0.38;
-        if (width > 480)  return width * 0.44;
-        return width * 0.48;
+        if (width > 480)  return width * 0.72;
+        return width * 1.2;
     };
 
     const getVerticalGap = () => {
@@ -295,6 +295,21 @@ if (isPortfolio) {
 
     runPreloader(() => {
         portfolioTransition.reveal(0.9);
+
+        // Modale avertissement mobile — une seule fois par session
+        if (window.innerWidth < 768 && !sessionStorage.getItem('sicz_mobile_ok')) {
+            const warn = document.getElementById('mobileWarning');
+            const btn  = document.getElementById('mobileWarningBtn');
+            if (warn && btn) {
+                setTimeout(() => warn.classList.add('is-visible'), 300);
+                btn.addEventListener('click', () => {
+                    warn.classList.add('is-hiding');
+                    setTimeout(() => warn.remove(), 400);
+                    sessionStorage.setItem('sicz_mobile_ok', '1');
+                });
+            }
+        }
+
         if (savedScroll) {
             // Retour depuis un projet : affichage immédiat sans animation
             gsap.set(allStaggerEls, { opacity: 1, y: 0 });
@@ -353,6 +368,11 @@ if (isPortfolio) {
         cards.push(cardData);
     });
 
+    // Mobile (< 768px) : pas de hover, forcer toutes les cartes en couleur
+    if (window.innerWidth < 768) {
+        cards.forEach(item => { if (item.liquid) item.liquid.setHovered(1); item.hovered = true; });
+    }
+
     let currentProgress = 0;
 
     // ─── SCROLL SNAP : description ↔ footer ────────────────────
@@ -368,22 +388,25 @@ if (isPortfolio) {
     const snapEase = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
     function snapToFooter() {
+        if (window.innerWidth < 768) return;
         isSnapping = true;
         snapBackY = lenis.scroll;
         lenis.scrollTo(footer, { duration: 1.4, easing: snapEase, onComplete: () => { isSnapping = false; } });
     }
 
     function snapToDesc() {
+        if (window.innerWidth < 768) return;
         isSnapping = true;
         const safeY = Math.max(0, snapBackY - snapReturnOffset);
         lenis.scrollTo(safeY, { duration: 1.4, easing: snapEase, onComplete: () => {
             isSnapping = false;
             snapLockY  = safeY;
-            snapFooterObserver.observe(footer); // re-arme l'observer
+            snapFooterObserver.observe(footer);
         }});
     }
 
     const snapFooterObserver = new IntersectionObserver((entries) => {
+        if (window.innerWidth < 768) return;
         if (entries[0].isIntersecting && !isSnapping) {
             snapFooterObserver.unobserve(footer);
             snapToFooter();
@@ -396,22 +419,13 @@ if (isPortfolio) {
         scrollHint.style.opacity = hintOpacity;
     });
 
-    // Bloque le scroll pendant le snap + remontée depuis le footer
+    // Bloque le scroll pendant le snap + remontée depuis le footer (desktop uniquement)
     window.addEventListener('wheel', (e) => {
+        if (window.innerWidth < 768) return;
         if (isSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
         const inFooter = footer.getBoundingClientRect().top <= 0;
         if (e.deltaY < 0 && inFooter && snapBackY > 0) { e.preventDefault(); e.stopImmediatePropagation(); snapToDesc(); }
     }, { passive: false, capture: true });
-
-    // Swipe mobile — remontée uniquement (descente gérée par l'observer)
-    let snapTouchY = 0;
-    window.addEventListener('touchstart', e => { snapTouchY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchend', e => {
-        if (isSnapping) return;
-        const inFooter = footer.getBoundingClientRect().top <= 0;
-        const delta = snapTouchY - e.changedTouches[0].clientY;
-        if (delta < -40 && inFooter && snapBackY > 0) snapToDesc();
-    }, { passive: true });
 
     function updateScene(globalProgress) {
         const textHoldLimit = 0.15;
@@ -517,6 +531,7 @@ if (isPortfolio) {
     }
 
     function updateHoverStates() {
+        if (window.innerWidth < 768) return;
         const el = document.elementFromPoint(globalMouseX, globalMouseY);
         const cardUnder = el ? el.closest('.card') : null;
         cards.forEach(item => {
@@ -618,7 +633,10 @@ if (isPortfolio) {
 
     window.addEventListener('resize', () => { fitBigName(); radius = getRadius(); });
 
-    initDescriptionReveal(lenis, (scrollY) => { snapLockY = scrollY; snapFooterObserver.observe(footer); });
+    initDescriptionReveal(lenis, (scrollY) => {
+        snapLockY = scrollY;
+        if (window.innerWidth >= 768) snapFooterObserver.observe(footer);
+    });
 }
 
 // ─── PROJECT ────────────────────────────────────────────────────
@@ -931,6 +949,7 @@ if (isProject) {
     }
 
     function snapProjectToFooter() {
+        if (window.innerWidth < 768) return;
         projectIsSnapping = true;
         projectSnapLockY = lenis.scroll;
         setNavVisible(false);
@@ -938,6 +957,7 @@ if (isProject) {
     }
 
     function snapProjectBack() {
+        if (window.innerWidth < 768) return;
         projectIsSnapping = true;
         const safeY = Math.max(0, projectSnapLockY - 20);
         lenis.scrollTo(safeY, { duration: 1.4, easing: projectSnapEase, onComplete: () => {
@@ -949,15 +969,17 @@ if (isProject) {
     }
 
     const projectSnapFooterObserver = new IntersectionObserver((entries) => {
+        if (window.innerWidth < 768) return;
         if (entries[0].isIntersecting && !projectIsSnapping) {
             projectSnapFooterObserver.unobserve(footer);
             snapProjectToFooter();
         }
     }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-    projectSnapFooterObserver.observe(footer);
+    if (window.innerWidth >= 768) projectSnapFooterObserver.observe(footer);
 
-    // Bloque le scroll pendant le snap + remontée depuis le footer
+    // Bloque le scroll pendant le snap + remontée depuis le footer (desktop uniquement)
     window.addEventListener('wheel', (e) => {
+        if (window.innerWidth < 768) return;
         if (projectIsSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
         const inFooter = footer && footer.getBoundingClientRect().top <= 10;
         if (inFooter && e.deltaY < 0 && projectSnapLockY < Infinity) {
@@ -997,6 +1019,7 @@ if (!isPortfolio && !isProject) {
         }
 
         function snapLegalToFooter() {
+            if (window.innerWidth < 768) return;
             legalIsSnapping = true;
             legalSnapLockY = lenis.scroll;
             setLegalNavVisible(false);
@@ -1004,6 +1027,7 @@ if (!isPortfolio && !isProject) {
         }
 
         function snapLegalBack() {
+            if (window.innerWidth < 768) return;
             legalIsSnapping = true;
             const safeY = Math.max(0, legalSnapLockY - 20);
             lenis.scrollTo(safeY, { duration: 1.4, easing: legalSnapEase, onComplete: () => {
@@ -1015,14 +1039,16 @@ if (!isPortfolio && !isProject) {
         }
 
         const legalSnapFooterObserver = new IntersectionObserver((entries) => {
+            if (window.innerWidth < 768) return;
             if (entries[0].isIntersecting && !legalIsSnapping) {
                 legalSnapFooterObserver.unobserve(footer);
                 snapLegalToFooter();
             }
         }, { threshold: 0 });
-        legalSnapFooterObserver.observe(footer);
+        if (window.innerWidth >= 768) legalSnapFooterObserver.observe(footer);
 
         window.addEventListener('wheel', (e) => {
+            if (window.innerWidth < 768) return;
             if (legalIsSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
             const inFooter = footer && footer.getBoundingClientRect().top <= 10;
             if (inFooter && e.deltaY < 0 && legalSnapLockY < Infinity) {
