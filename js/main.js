@@ -1,4 +1,4 @@
-// ─── PAGE DETECTION ─────────────────────────────────────────────
+﻿// ─── PAGE DETECTION ─────────────────────────────────────────────
 const isPortfolio = !!document.getElementById('scrollContainer');
 const isProject   = !!document.getElementById('projectGallery');
 
@@ -210,14 +210,14 @@ if (isPortfolio) {
     const logoFixed  = document.querySelector('.logo-fixed');
 
     const projects = [
-        { key: 'arobase',  name: 'Arobase Systèmes',       categories: ['branding', 'web'], card: 'assets/projets/Arobase/projets portfolio_Carte carousel Arobase.jpg' },
-        { key: 'bouchtri', name: 'Bouchtri',                categories: ['autres'], card: 'assets/projets/Bouchtri/projets portfolio_Carte carousel bouchtri.jpg' },
-        { key: 'comedie',  name: 'La Comédie des Fleurs',   categories: ['web'], card: 'assets/projets/Comédie/projets portfolio_Carte carousel comedie.jpg' },
+        { key: 'arobase',  name: 'Arobase Systèmes',       categories: ['branding', 'web'], card: 'assets/projets/Arobase/projets portfolio_Carte carousel Arobase.webp' },
+        { key: 'bouchtri', name: 'Bouchtri',                categories: ['autres'], card: 'assets/projets/Bouchtri/projets portfolio_Carte carousel bouchtri.webp' },
+        { key: 'comedie',  name: 'La Comédie des Fleurs',   categories: ['web'], card: 'assets/projets/Comédie/projets portfolio_Carte carousel comedie.webp' },
         { key: 'honey',    name: 'Honey Coffee & Food',     categories: ['web'] },
-        { key: 'slink',    name: 's!Link',                  categories: ['branding'], card: 'assets/projets/Silink/projets portfolio_Carte carousel silink.jpg' },
-        { key: 'mankled',  name: 'MANK.LED',                categories: ['web'], card: 'assets/projets/Mank/projets portfolio_Carte carousel mank-38.jpg' },
+        { key: 'slink',    name: 's!Link',                  categories: ['branding'], card: 'assets/projets/Silink/projets portfolio_Carte carousel silink.webp' },
+        { key: 'mankled',  name: 'MANK.LED',                categories: ['web'], card: 'assets/projets/Mank/projets portfolio_Carte carousel mank-38.webp' },
         { key: 'auren',    name: 'Auren',                   categories: ['autres'] },
-        { key: 'myr',      name: 'myr',                     categories: ['branding'], card: 'assets/projets/MYR/projets portfolio_Carte carousel myr.jpg' },
+        { key: 'myr',      name: 'myr',                     categories: ['branding'], card: 'assets/projets/MYR/projets portfolio_Carte carousel myr.webp' },
         { key: 'affiches', name: 'Explorations<br>print',   categories: ['autres'] },
     ];
 
@@ -653,29 +653,29 @@ if (isProject) {
             creative: "Pascal voulait garder le renard mais en traits géométriques, dans l'esprit de Richard Orlinski. Ça cadrait pas mal ce que je pouvais faire. J'ai travaillé sur des grilles de construction pour que la tête soit parfaitement symétrique, testé plusieurs directions avant d'arriver à quelque chose de propre et déclinable. Pour le site, j'ai choisi une palette sombre qui tranche avec les agences web classiques, trop sages. Les réseaux ont suivi la même logique graphique que le logo.",
             palette: "Orange Mandarine #F68615 · Noir Pur #000000 · Blanc Pur #FFFFFF · Almost Black #222222",
             results: "Pascal a gagné des clients grâce au nouveau site, ce que l'ancien ne permettait pas.",
-            hero: 'assets/projets/Arobase/images hero/projets portfolio-11.jpg',
+            hero: 'assets/projets/Arobase/images hero/projets portfolio-11.webp',
             heroSlideshow: [
-                'assets/projets/Arobase/images hero/projets portfolio-11.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-12.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-13.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-14.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-15.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-16.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-17.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-18.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-19.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-20.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio-21.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie.jpg',
-                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie 2.jpg'
+                'assets/projets/Arobase/images hero/projets portfolio-11.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-12.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-13.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-14.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-15.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-16.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-17.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-18.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-19.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-20.webp',
+                'assets/projets/Arobase/images hero/projets portfolio-21.webp',
+                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie.webp',
+                'assets/projets/Arobase/images hero/projets portfolio_Image hero Arobase copie 2.webp'
             ],
             images: [
-                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 1.jpg', portrait: false },
-                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 2.jpg', portrait: true  },
-                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 3.jpg', portrait: true  },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 1.webp', portrait: false },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 2.webp', portrait: true  },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 3.webp', portrait: true  },
                 { src: 'assets/projets/Arobase/9.16.mp4', video: true, portrait: false, audio: 'assets/projets/Arobase/son-video-arobase.mp3' },
-                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 5.jpg', portrait: true  },
-                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 6.jpg', portrait: true  }
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 5.webp', portrait: true  },
+                { src: 'assets/projets/Arobase/projets portfolio_Galerie Arobase 6.webp', portrait: true  }
             ]
         },
         {
@@ -685,15 +685,15 @@ if (isProject) {
             creative: "Le nom dit tout : « bouche » + « tri ». Le O remplacé par le symbole de recyclage, c'était une évidence. Pour les couleurs, j'avais pas envie de faire le vert écolo habituel, trop vu. Vert forêt profond pour le corps de la station, vert électrique pour les LED et l'écran. Le logo a deux versions pensées pour le produit lui-même : une horizontale pour la base, une empilée pour l'écran. La campagne a tourné autour d'un seul fil rouge : « Un geste. Une ville qui avance. »",
             palette: "Vert Forêt #13302a · Vert Électrique #23ff65",
             contribution: "Logo, charte, visuels du produit via IA, 5 visuels de campagne (4×3, abribus, réseaux, presse), 5 mockups, motion design 37 secondes sur After Effects avec voix off, landing page en vibe coding.",
-            hero: 'assets/projets/Bouchtri/projets portfolio_Image hero bouchtri.jpg',
+            hero: 'assets/projets/Bouchtri/projets portfolio_Image hero bouchtri.webp',
             heroVideo: 'assets/projets/Bouchtri/motion bouchtri render.mp4',
             images: [
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 1.jpg', portrait: false },
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 2.jpg', portrait: true  },
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 3.jpg', portrait: true  },
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 4.jpg', portrait: false },
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 5.jpg', portrait: true  },
-                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 6.jpg', portrait: true  }
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 1.webp', portrait: false },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 2.webp', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 3.webp', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 4.webp', portrait: false },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 5.webp', portrait: true  },
+                { src: 'assets/projets/Bouchtri/projets portfolio_Galerie bouchtri 6.webp', portrait: true  }
             ]
         },
         {
@@ -705,14 +705,14 @@ if (isProject) {
             context: "Client d'Arobase Systèmes. La Comédie des Fleurs est une boutique de fleurs à Épinal. L'ancien site était en full code, impossible à gérer pour elle au quotidien. En bonus : elle est partenaire d'un cimetière militaire américain à Épinal, ce qui a nécessité un deuxième site (Florist American Cemetery) entièrement en français et en anglais.",
             objectives: ['Migrer sur WordPress/WooCommerce', 'Intégrer 280 produits', 'Créer une ambiance florale immersive', 'Site enfant bilingue FR/EN'],
             creative: "Pour la Comédie des Fleurs, je voulais que le visiteur ait l'impression d'entrer dans la boutique depuis son écran. Beaucoup de photos, mise en page généreuse, palette végétale calée sur le logo existant. Pour Florist American Cemetery, c'est un autre registre : bleu et rouge du drapeau américain, sobre, pour une clientèle qui vient honorer des soldats enterrés en France. J'ai construit des fichiers CSV à la main pour importer les 280 produits, et mis en place Polylang pour la double langue avec traduction complète des slugs.",
-            hero: 'assets/projets/Comédie/projets portfolio_Image hero comedie.jpg',
+            hero: 'assets/projets/Comédie/projets portfolio_Image hero comedie.webp',
             images: [
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 1.jpg', portrait: false },
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 2.jpg', portrait: true  },
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 3.jpg', portrait: true  },
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 4.jpg', portrait: false },
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 5.jpg', portrait: true  },
-                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 6.jpg', portrait: true  }
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 1.webp', portrait: false },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 2.webp', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 3.webp', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 4.webp', portrait: false },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 5.webp', portrait: true  },
+                { src: 'assets/projets/Comédie/projets portfolio_Galerie comedie 6.webp', portrait: true  }
             ]
         },
         {
@@ -731,9 +731,9 @@ if (isProject) {
             palette: "Violet Électrique #6528F7 · Lavande #D7BBF5 · Bleu Nuit #0D0975 · Altone Medium",
             hero: 'assets/projets/Silink/projets portfolio_Image hero silink.jpg',
             images: [
-                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 1.jpg', portrait: false },
-                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 2.jpg', portrait: false },
-                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 3.jpg', portrait: false }
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 1.webp', portrait: false },
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 2.webp', portrait: false },
+                { src: 'assets/projets/Silink/projets portfolio_Galerie silink 3.webp', portrait: false }
             ],
             pdf: 'assets/projets/Silink/silink charte graphique pdf.pdf'
         },
@@ -741,14 +741,14 @@ if (isProject) {
             key: 'mankled', title: 'MANK.LED', type: 'Design web', year: '2025', link: 'https://prod-novakom.fr/arobase/mank', linkLabel: 'Voir le site',
             context: "Client d'Arobase, cinquantaine d'heures. MANK.LED vend et pose de l'éclairage et du matériel électrique pour le spectacle, les forains et les collectivités.",
             creative: "Fond noir partout. Quand tu vends des produits qui s'allument, tu les mets sur fond noir. C'est ce que font les scènes de spectacle depuis toujours. Structure divisée par secteur d'activité pour que chaque visiteur trouve son truc rapidement.",
-            hero: 'assets/projets/Mank/projets portfolio_Image hero mank.jpg',
+            hero: 'assets/projets/Mank/projets portfolio_Image hero mank.webp',
             images: [
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 1.jpg', portrait: false },
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 2.jpg', portrait: true },
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 3.jpg', portrait: true },
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 5.jpg', portrait: false },
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 6.jpg', portrait: true },
-                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 7.jpg', portrait: true }
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 1.webp', portrait: false },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 2.webp', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 3.webp', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 5.webp', portrait: false },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 6.webp', portrait: true },
+                { src: 'assets/projets/Mank/projets portfolio_Galerie mank 7.webp', portrait: true }
             ]
         },
         {
@@ -763,11 +763,11 @@ if (isProject) {
             key: 'myr', title: 'myr', type: 'Identité visuelle', year: '2024',
             context: "2ème année Bachelor, vingtaine d'heures. Marque fictive de cosmétiques au miel de sapin des Vosges.",
             creative: "Je suis vosgien, donc l'univers je le connais bien. La branche de sapin qui forme le Y de mYr, c'est venu assez naturellement. Vert forêt, miel doré, crème : les couleurs du territoire. Déclinaisons produits faites sur Photoshop avec des mockups.",
-            hero: 'assets/projets/MYR/projets portfolio_Image hero myr.jpg',
+            hero: 'assets/projets/MYR/projets portfolio_Image hero myr.webp',
             images: [
-                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 1.jpg', portrait: false },
-                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 2.jpg', portrait: false },
-                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 3.jpg', portrait: false }
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 1.webp', portrait: false },
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 2.webp', portrait: false },
+                { src: 'assets/projets/MYR/projets portfolio_Galerie myr 3.webp', portrait: false }
             ],
             pdf: 'assets/projets/MYR/Charte-graphique-myr.pdf'
         },
