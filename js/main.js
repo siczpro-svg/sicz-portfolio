@@ -213,7 +213,7 @@ if (isPortfolio) {
         { key: 'arobase',  name: 'Arobase Systèmes',       categories: ['branding', 'web'], card: 'assets/projets/Arobase/projets portfolio_Carte carousel Arobase.webp' },
         { key: 'bouchtri', name: 'Bouchtri',                categories: ['autres'], card: 'assets/projets/Bouchtri/projets portfolio_Carte carousel bouchtri.webp' },
         { key: 'comedie',  name: 'La Comédie des Fleurs',   categories: ['web'], card: 'assets/projets/Comédie/projets portfolio_Carte carousel comedie.webp' },
-        { key: 'honey',    name: 'Honey Coffee & Food',     categories: ['web'] },
+        { key: 'honey',    name: 'Honey Coffee & Food',     categories: ['web'], card: 'assets/projets/Honey/projets portfolio_Carte carousel honey.webp' },
         { key: 'slink',    name: 's!Link',                  categories: ['branding'], card: 'assets/projets/Silink/projets portfolio_Carte carousel silink.webp' },
         { key: 'mankled',  name: 'MANK.LED',                categories: ['web'], card: 'assets/projets/Mank/projets portfolio_Carte carousel mank-38.webp' },
         { key: 'auren',    name: 'Auren',                   categories: ['autres'] },
@@ -376,57 +376,11 @@ if (isPortfolio) {
 
     let currentProgress = 0;
 
-    // ─── SCROLL SNAP : description ↔ footer ────────────────────
-    let isSnapping  = false;
-    let snapLockY   = Infinity; // armé par onRevealComplete
-    let snapBackY   = 0;
-
-    const footerTopEl     = footer.querySelector('.footer-top');
-    const footerPadTop    = parseInt(getComputedStyle(footer).paddingTop) || 0;
-    const snapBandHeight  = footerTopEl ? Math.round(footerTopEl.offsetHeight + footerPadTop) : 100;
-    const snapReturnOffset = snapBandHeight;
-
-    const snapEase = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-    function snapToFooter() {
-        if (window.innerWidth < 768) return;
-        isSnapping = true;
-        snapBackY = lenis.scroll;
-        lenis.scrollTo(footer, { duration: 1.4, easing: snapEase, onComplete: () => { isSnapping = false; } });
-    }
-
-    function snapToDesc() {
-        if (window.innerWidth < 768) return;
-        isSnapping = true;
-        const safeY = Math.max(0, snapBackY - snapReturnOffset);
-        lenis.scrollTo(safeY, { duration: 1.4, easing: snapEase, onComplete: () => {
-            isSnapping = false;
-            snapLockY  = safeY;
-            snapFooterObserver.observe(footer);
-        }});
-    }
-
-    const snapFooterObserver = new IntersectionObserver((entries) => {
-        if (window.innerWidth < 768) return;
-        if (entries[0].isIntersecting && !isSnapping) {
-            snapFooterObserver.unobserve(footer);
-            snapToFooter();
-        }
-    }, { threshold: 0, rootMargin: `0px 0px ${snapBandHeight}px 0px` });
-
     lenis.on('scroll', ({ scroll }) => {
         currentProgress = Math.min(Math.max(scroll / (lenis.limit || 1), 0), 1);
         const hintOpacity = gsap.utils.clamp(0, 0.75, gsap.utils.mapRange(0.60, 0.72, 0.75, 0, currentProgress));
         scrollHint.style.opacity = hintOpacity;
     });
-
-    // Bloque le scroll pendant le snap + remontée depuis le footer (desktop uniquement)
-    window.addEventListener('wheel', (e) => {
-        if (window.innerWidth < 768) return;
-        if (isSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
-        const inFooter = footer.getBoundingClientRect().top <= 0;
-        if (e.deltaY < 0 && inFooter && snapBackY > 0) { e.preventDefault(); e.stopImmediatePropagation(); snapToDesc(); }
-    }, { passive: false, capture: true });
 
     function updateScene(globalProgress) {
         const textHoldLimit = 0.15;
@@ -635,10 +589,7 @@ if (isPortfolio) {
 
     window.addEventListener('resize', () => { fitBigName(); radius = getRadius(); });
 
-    initDescriptionReveal(lenis, (scrollY) => {
-        snapLockY = scrollY;
-        if (window.innerWidth >= 768) snapFooterObserver.observe(footer);
-    });
+    initDescriptionReveal(lenis, () => {});
 }
 
 // ─── PROJECT ────────────────────────────────────────────────────
@@ -716,13 +667,21 @@ if (isProject) {
             ]
         },
         {
-            key: 'honey', title: 'Honey Coffee & Food', type: 'Design web', year: '2025', wip: true,
+            key: 'honey', title: 'Honey Coffee & Food', type: 'Design web', year: '2025',
             context: "My Digital Project en Bachelor 3ème année, équipe pluridisciplinaire. Honey est un restaurant brunch ouvert depuis 2022 à Nancy, avec une adresse à Metz et plus de 14 000 abonnés Instagram. L'ancien site ne faisait pas le job.",
             objectives: ["Site avec animations et effets au scroll", "Charte graphique à partir de l'identité existante", "Contenus réseaux et vidéos"],
             creative: "Zéro refonte logo, c'était la contrainte. J'ai construit la charte autour de ce qui existait déjà : noir, or, blanc. L'ambiance recherchée c'est chaud et un peu premium à la fois. Site réalisé en vibe coding avec effets au scroll, animations et un préloader pour poser l'ambiance dès l'entrée.",
             contribution: "Charte graphique, développement complet, intégration photos, préloader. Les réseaux et vidéos, c'était le reste du pôle créa. Le SEO était géré par le pôle marketing.",
-            hero: 'https://picsum.photos/seed/honey-hero/1920/1080',
-            images: ['https://picsum.photos/seed/honey1/1600/900','https://picsum.photos/seed/honey2/900/1100','https://picsum.photos/seed/honey3/900/1100','https://picsum.photos/seed/honey4/1600/900','https://picsum.photos/seed/honey5/900/1100','https://picsum.photos/seed/honey6/900/1100']
+            hero: 'assets/projets/Honey/projets portfolio_Image hero honey.webp',
+            link: 'https://honey-bne.pages.dev/', linkLabel: 'Voir le site',
+            images: [
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 1.webp', portrait: false },
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 2.webp', portrait: true },
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 3.webp', portrait: true },
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 4.webp', portrait: false },
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 5.webp', portrait: true },
+                { src: 'assets/projets/Honey/projets portfolio_Galerie honey 6.webp', portrait: true }
+            ]
         },
         {
             key: 'slink', title: 's!Link', type: 'Identité visuelle', year: '2024',
@@ -752,7 +711,7 @@ if (isProject) {
             ]
         },
         {
-            key: 'auren', title: 'AUREN', type: 'UX/UI Design', year: '2025',
+            key: 'auren', title: 'AUREN', type: 'UX/UI Design', year: '2025', wip: true,
             context: "Cours UX/UI en 3ème année, moins de 20 heures. App fictive pour louer des voitures de collection pour des occasions spéciales : mariage, tournage, exposition.",
             creative: "Des voitures comme l'Aston Martin DB5 ou la Rolls-Royce Silver Cloud III, c'est des voitures qui font rêver. J'ai eu envie que la palette le reflète : poudre, lavande, crème. Des tons brumeux, presque oniriques. Pas ce qu'on attend d'une app de location de voitures, mais ça colle avec ce que ces voitures représentent. Visuels générés via IA pour rester dans ces tons. 14 écrans au total, de l'onboarding jusqu'au profil utilisateur.",
             palette: "Poudre · Lavande · Crème · Prune-noir · Cormorant Garamond + Jost Light",
@@ -772,7 +731,7 @@ if (isProject) {
             pdf: 'assets/projets/MYR/Charte-graphique-myr.pdf'
         },
         {
-            key: 'affiches', title: 'Explorations print', type: 'Print & illustration', year: '2024 – 2025',
+            key: 'affiches', title: 'Explorations print', type: 'Print & illustration', year: '2024 – 2025', wip: true,
             context: "Six affiches, six univers. Du brief client à l'exploration personnelle.",
             creative: "Nancy Handball « Puissance Sept » — affiche pour le pass mi-saison. « Puissance Sept » = 7 matchs dans le pass, 7 joueurs sur le terrain. Joueur en célébration devant une typo massive dorée. Marine et or, les couleurs du club.\n\nSalon du Randonneur « L'Appel de l'Évasion » — double affiche pour l'ouverture du salon à Lyon en mars 2026. Technique de double exposition : un visage qui se fond dans un paysage. Deux versions — orange et volcanique pour la femme, bleu montagne pour l'homme.\n\nMercedes 190E — j'aime les vieilles mécaniques. Typo 3D liquide turquoise sur la carrosserie grise de la 190E. Le but c'était de faire quelque chose de moderne sur une voiture des années 90.\n\nToyota GT86 — surnommée « Hachiroku » en japonais. Noir et blanc, rouge sang, culture JDM. Pas d'artifice — juste l'ambiance de la voiture.\n\nMenace — Halloween. Personnage en costume avec une citrouille en tête, éclairs néon orange, fond texturé. L'idée c'était de faire quelque chose qui ressemble à une affiche de film, pas à une déco de supermarché.\n\nL'Illusion des Masques — affiche pour une soirée étudiante le 17 octobre. Masque vénitien 3D, typo liquide or et noir, fond marbre. Je voulais que ça ressemble à une affiche de spectacle plutôt qu'à un flyer étudiant.",
             hero: 'https://picsum.photos/seed/affiches-hero/1920/1080',
@@ -1099,55 +1058,14 @@ if (isProject) {
         transition.cover(0.65, () => { window.location.href = url; });
     }
 
-    // ─── SNAP SCROLL → FOOTER ───────────────────────────────────────────────
-    let projectIsSnapping = false;
-    const projectSnapEase = t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-    let projectSnapLockY = Infinity;
-
+    // Masque la nav quand le footer est visible, la réaffiche sinon
     const projectNav = document.querySelector('.project-nav');
-    function setNavVisible(v) {
-        if (projectNav) projectNav.style.opacity = v ? '1' : '0';
+    if (projectNav && footer) {
+        new IntersectionObserver((entries) => {
+            projectNav.style.opacity = entries[0].isIntersecting ? '0' : '1';
+            projectNav.style.pointerEvents = entries[0].isIntersecting ? 'none' : '';
+        }, { threshold: 0 }).observe(footer);
     }
-
-    function snapProjectToFooter() {
-        if (window.innerWidth < 768) return;
-        projectIsSnapping = true;
-        projectSnapLockY = lenis.scroll;
-        setNavVisible(false);
-        lenis.scrollTo(footer, { duration: 1.4, easing: projectSnapEase, onComplete: () => { projectIsSnapping = false; } });
-    }
-
-    function snapProjectBack() {
-        if (window.innerWidth < 768) return;
-        projectIsSnapping = true;
-        const safeY = Math.max(0, projectSnapLockY - 20);
-        lenis.scrollTo(safeY, { duration: 1.4, easing: projectSnapEase, onComplete: () => {
-            projectSnapLockY = Infinity;
-            projectIsSnapping = false;
-            setNavVisible(true);
-            projectSnapFooterObserver.observe(footer);
-        }});
-    }
-
-    const projectSnapFooterObserver = new IntersectionObserver((entries) => {
-        if (window.innerWidth < 768) return;
-        if (entries[0].isIntersecting && !projectIsSnapping) {
-            projectSnapFooterObserver.unobserve(footer);
-            snapProjectToFooter();
-        }
-    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-    if (window.innerWidth >= 768) projectSnapFooterObserver.observe(footer);
-
-    // Bloque le scroll pendant le snap + remontée depuis le footer (desktop uniquement)
-    window.addEventListener('wheel', (e) => {
-        if (window.innerWidth < 768) return;
-        if (projectIsSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
-        const inFooter = footer && footer.getBoundingClientRect().top <= 10;
-        if (inFooter && e.deltaY < 0 && projectSnapLockY < Infinity) {
-            e.preventDefault(); e.stopImmediatePropagation();
-            snapProjectBack();
-        }
-    }, { passive: false, capture: true });
 
     // Interception des liens internes
     document.addEventListener('click', (e) => {
@@ -1169,53 +1087,4 @@ if (!isPortfolio && !isProject) {
 
     runPreloader(() => {});
 
-    if (isLegal) {
-        let legalIsSnapping = false;
-        const legalSnapEase = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        let legalSnapLockY = Infinity;
-
-        const legalNav = document.querySelector('.project-nav');
-        function setLegalNavVisible(v) {
-            if (legalNav) legalNav.style.opacity = v ? '1' : '0';
-        }
-
-        function snapLegalToFooter() {
-            if (window.innerWidth < 768) return;
-            legalIsSnapping = true;
-            legalSnapLockY = lenis.scroll;
-            setLegalNavVisible(false);
-            lenis.scrollTo(footer, { duration: 1.4, easing: legalSnapEase, onComplete: () => { legalIsSnapping = false; } });
-        }
-
-        function snapLegalBack() {
-            if (window.innerWidth < 768) return;
-            legalIsSnapping = true;
-            const safeY = Math.max(0, legalSnapLockY - 20);
-            lenis.scrollTo(safeY, { duration: 1.4, easing: legalSnapEase, onComplete: () => {
-                legalSnapLockY = Infinity;
-                legalIsSnapping = false;
-                setLegalNavVisible(true);
-                legalSnapFooterObserver.observe(footer);
-            }});
-        }
-
-        const legalSnapFooterObserver = new IntersectionObserver((entries) => {
-            if (window.innerWidth < 768) return;
-            if (entries[0].isIntersecting && !legalIsSnapping) {
-                legalSnapFooterObserver.unobserve(footer);
-                snapLegalToFooter();
-            }
-        }, { threshold: 0 });
-        if (window.innerWidth >= 768) legalSnapFooterObserver.observe(footer);
-
-        window.addEventListener('wheel', (e) => {
-            if (window.innerWidth < 768) return;
-            if (legalIsSnapping) { e.preventDefault(); e.stopImmediatePropagation(); return; }
-            const inFooter = footer && footer.getBoundingClientRect().top <= 10;
-            if (inFooter && e.deltaY < 0 && legalSnapLockY < Infinity) {
-                e.preventDefault(); e.stopImmediatePropagation();
-                snapLegalBack();
-            }
-        }, { passive: false, capture: true });
-    }
 }
