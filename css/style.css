@@ -219,6 +219,7 @@ a, button { cursor: none; }
     align-items: flex-start;
     gap: 14px;
     margin-top: 32px;
+    pointer-events: auto;
 }
 .intro-btn {
     display: inline-flex;
